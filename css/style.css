@@ -2038,3 +2038,54 @@ section { background: var(--cream); }
   color: var(--white);
   border-radius: var(--radius);
 }
+
+/* ---- Bouton « Boutique en ligne » en gras au survol, au clic et sur sa page ---- */
+.nav-cta:hover,
+.nav-cta:focus-visible,
+.nav-cta:active,
+.nav-cta[aria-current="page"] { font-weight: 700; }
+
+/* ---- Coordonnées affichées sur la page boutique (sans lien) ---- */
+.contact-chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35em;
+  margin: 0;
+  padding: 0.9em 1.6em;
+  border: 1px solid rgba(246,243,236,0.55);
+  border-radius: var(--radius);
+  color: var(--cream);
+  text-align: center;
+}
+.contact-chip-cta { background: var(--biscuit); border-color: var(--biscuit); color: #3A2A12; }
+.contact-chip-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
+.contact-chip-value { font-size: 1.05rem; letter-spacing: 0.02em; }
+.cta-band .contact-chip { color: var(--cream); }
+.cta-band .contact-chip-cta { color: #3A2A12; }
+@media (max-width: 640px) {
+  .contact-chip { width: 100%; }
+  .contact-chip-value { overflow-wrap: anywhere; }
+}
+
+/* ---- Fin trait de séparation entre la vidéo et les sections illustrées ---- */
+.on-video + section,
+section + .on-video { position: relative; }
+.on-video + section::before,
+section + .on-video::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: rgba(246,243,236,0.6);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ---- Accueil, bloc « La boutique » : ombre légère pour détacher le texte ---- */
+.shop-spot .fullbleed-text .eyebrow,
+.shop-spot .fullbleed-text h2,
+.shop-spot .fullbleed-text p {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.45), 0 0 14px rgba(0,0,0,0.35);
+}
+.shop-spot .open-state { box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
