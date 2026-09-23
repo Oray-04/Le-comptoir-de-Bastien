@@ -1,0 +1,2027 @@
+/* =========================================================
+   LE COMPTOIR DE BASTIEN — Artisan biscuitier de Provence
+   Charte : vert sauge de l'enseigne, crème, accents biscuit
+   ========================================================= */
+
+:root {
+  /* Couleurs de marque */
+  --sage:        #ADB8A7;   /* vert de l'enseigne et du logo */
+  --sage-light:  #C6CFC0;
+  --sage-soft:   #E4E8DF;
+  --sage-deep:   #7E8E78;
+  --sage-dark:   #66735F;   /* sauge assombri : fonds portant du texte blanc */
+  --forest:      #38452F;   /* vert profond : texte et fonds */
+  --forest-dark: #2A3423;
+
+  --cream:       #F6F3EC;
+  --cream-warm:  #EFE9DC;
+  --white:       #FFFFFF;
+
+  --biscuit:     #C89A5B;   /* doré du biscuit cuit */
+  --biscuit-deep:#A87B3D;
+
+  --text:        #35402F;
+  --text-soft:   #6B7364;
+  --line:        rgba(56, 69, 47, 0.16);
+
+  /* Typographie */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Outfit", "Segoe UI", Helvetica, Arial, sans-serif;
+
+  /* Rythme */
+  --container: 1140px;
+  --radius: 4px;
+  --shadow: 0 18px 44px -22px rgba(42, 52, 35, 0.55);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* height:auto est indispensable : sans lui, l'attribut height="…" du HTML
+   prend le pas sur les règles aspect-ratio et déforme les blocs. */
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+::selection { background: var(--sage); color: var(--white); }
+
+/* ---------------- Typographie ---------------- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 20, "WONK" 1;
+  font-weight: 500;
+  color: var(--forest);
+  line-height: 1.1;
+  margin: 0 0 0.45em;
+  letter-spacing: -0.015em;
+}
+
+h1 { font-size: clamp(2.5rem, 5.4vw, 4.3rem); }
+h2 { font-size: clamp(1.85rem, 3.4vw, 2.7rem); }
+h3 { font-size: 1.3rem; }
+h4 { font-size: 1.05rem; }
+
+p { margin: 0 0 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+.lede {
+  font-size: 1.14rem;
+  color: var(--text-soft);
+  max-width: 60ch;
+  line-height: 1.7;
+}
+
+/* Capitales espacées : la voix typographique de la marque,
+   reprise de « ARTISAN BISCUITIER DE PROVENCE » du logo */
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 1.4em;
+}
+.band-forest .eyebrow { color: var(--sage-light); }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+.container-narrow { max-width: 780px; }
+
+section { padding: 92px 0; }
+section.tight { padding: 60px 0; }
+
+/* ---------------- Boutons ---------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 1.05em 2em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.btn-primary { background: var(--forest); color: var(--cream); }
+.btn-primary:hover { background: var(--forest-dark); }
+
+.btn-light { background: var(--cream); color: var(--forest); }
+.btn-light:hover { background: var(--white); }
+
+.btn-outline { background: transparent; color: var(--forest); border-color: var(--forest); }
+.btn-outline:hover { background: var(--forest); color: var(--cream); }
+
+.btn-outline-light { background: transparent; color: var(--cream); border-color: rgba(246,243,236,0.55); }
+.btn-outline-light:hover { background: var(--cream); color: var(--forest); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 2.2em; }
+
+/* ---------------- En-tête ---------------- */
+
+.announce {
+  background: var(--forest);
+  color: var(--sage-light);
+  text-align: center;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+}
+.announce a { color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.5); }
+
+.site-header { position: sticky; top: 0; z-index: 200; background: var(--sage); }
+.nav-wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+.brand { display: block; line-height: 0; }
+.brand img { height: 58px; width: auto; }
+
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--forest);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  padding: 6px 0;
+  position: relative;
+  opacity: 0.88;
+  transition: opacity 0.18s ease;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-links a[aria-current="page"] { opacity: 1; }
+.nav-links a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--forest);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--forest);
+  border-radius: var(--radius);
+  color: var(--forest);
+  cursor: pointer;
+  padding: 8px 10px;
+  line-height: 0;
+}
+.nav-toggle svg { width: 22px; height: 22px; }
+
+/* ---------------- Hero accueil ---------------- */
+
+.hero {
+  position: relative;
+  min-height: min(76vh, 660px);
+  display: flex;
+  align-items: flex-end;
+  background: var(--forest);
+  overflow: hidden;
+}
+.hero-media { position: absolute; inset: 0; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
+.hero-media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(28,35,23,0.92) 0%, rgba(28,35,23,0.58) 45%, rgba(28,35,23,0.25) 100%);
+}
+.hero-inner { position: relative; width: 100%; padding: 0 0 76px; }
+.hero h1 { color: var(--white); max-width: 15ch; margin-bottom: 0.3em; }
+.hero .eyebrow { color: var(--sage-light); }
+.hero .lede { color: rgba(246,243,236,0.9); max-width: 46ch; }
+
+/* ---------------- Bandes ---------------- */
+
+.band-forest { background: var(--forest); color: var(--cream); }
+.band-forest h2, .band-forest h3, .band-forest h4 { color: var(--white); }
+.band-forest p, .band-forest .lede { color: rgba(246,243,236,0.82); }
+
+.band-sage { background: var(--sage-soft); }
+.band-cream-warm { background: var(--cream-warm); }
+
+/* ---------------- Bandeau vitrine (élément signature) ----------------
+   Reprend la typographie de la vitrine de la boutique :
+   nom du produit en capitales espacées, précision en italique dessous. */
+
+.vitrine { background: var(--sage-dark); color: var(--white); padding: 78px 0; }
+.vitrine-inner { text-align: center; }
+.vitrine-title {
+  font-size: 0.74rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 46px;
+}
+.vitrine-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 30px; }
+.vitrine-list .name {
+  display: block;
+  font-size: clamp(1.35rem, 3.6vw, 2.1rem);
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.1;
+}
+.vitrine-list .sub {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: rgba(255,255,255,0.96);
+  margin-top: 7px;
+}
+
+/* ---------------- Blocs deux colonnes ---------------- */
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 68px; align-items: center; }
+.split.media-right .split-text { order: 1; }
+.split.media-right .split-media { order: 2; }
+.split.media-left .split-text { order: 2; }
+.split.media-left .split-media { order: 1; }
+
+.split-media { margin: 0; }
+.split-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
+.split-media.tall img { aspect-ratio: 3 / 4; }
+.split-media figcaption {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-top: 14px;
+}
+.band-forest .split-media figcaption { color: var(--sage-light); }
+
+/* ---------------- Grilles ---------------- */
+
+.grid { display: grid; gap: 30px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ---------------- Cartes ---------------- */
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.card-body { padding: 24px 24px 26px; flex: 1; }
+.card-body h3 { margin-bottom: 0.35em; font-size: 1.18rem; }
+.card-body p { font-size: 0.94rem; color: var(--text-soft); }
+.card-tag {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--biscuit-deep);
+  margin-bottom: 10px;
+}
+
+.value { border-top: 1px solid var(--line); padding-top: 26px; }
+.band-forest .value { border-top-color: rgba(246,243,236,0.24); }
+.value .num {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--biscuit);
+  margin-bottom: 12px;
+}
+.value h3 { font-size: 1.15rem; margin-bottom: 0.4em; }
+.value p { font-size: 0.94rem; color: var(--text-soft); }
+.band-forest .value p { color: rgba(246,243,236,0.78); }
+
+/* ---------------- Listes tarifaires ---------------- */
+
+.category { margin-bottom: 78px; }
+.category:last-child { margin-bottom: 0; }
+
+.category-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--forest);
+  padding-bottom: 16px;
+  margin-bottom: 34px;
+}
+.category-head h2 { margin-bottom: 0; }
+.category-head .note {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+}
+
+.price-list { list-style: none; margin: 0; padding: 0; }
+.price-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+.price-list li:last-child { border-bottom: none; }
+.price-list .item-name { color: var(--forest); }
+.price-list .item-sub {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  margin-top: 2px;
+}
+.price-list .dots { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); min-width: 20px; }
+.price-list .item-price { font-size: 0.95rem; color: var(--text-soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.price-list .item-price.todo { color: var(--biscuit-deep); font-style: italic; }
+
+.cols-2 { columns: 2; column-gap: 60px; }
+.cols-2 > * { break-inside: avoid; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--sage-soft);
+  color: var(--forest);
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-left: 10px;
+  vertical-align: 2px;
+}
+.badge-limited { background: var(--biscuit); color: var(--white); }
+
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.gallery img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
+
+/* ---------------- Encart « bientôt » ---------------- */
+
+.soon {
+  border: 1px solid var(--sage-deep);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  text-align: center;
+  background: var(--white);
+}
+.soon .eyebrow { color: var(--biscuit-deep); }
+.soon h2 { margin-bottom: 0.4em; }
+.soon p { color: var(--text-soft); max-width: 52ch; margin: 0 auto; }
+
+/* ---------------- Infos pratiques ---------------- */
+
+.info-block { margin-bottom: 34px; }
+.info-block:last-child { margin-bottom: 0; }
+.info-block h4 {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 10px;
+}
+.info-block p, .info-block a { font-size: 1rem; color: var(--text); text-decoration: none; }
+.info-block a:hover { text-decoration: underline; }
+.band-forest .info-block h4 { color: var(--sage-light); }
+.band-forest .info-block p, .band-forest .info-block a { color: rgba(246,243,236,0.9); }
+
+.hours { width: 100%; border-collapse: collapse; }
+.hours tr { border-bottom: 1px solid var(--line); }
+.hours tr:last-child { border-bottom: none; }
+.hours td { padding: 12px 0; font-size: 0.97rem; }
+.hours td:first-child { color: var(--forest); }
+.hours td:last-child { text-align: right; color: var(--text-soft); font-variant-numeric: tabular-nums; }
+.hours tr.is-today { background: var(--sage-soft); }
+.hours tr.is-today td { font-weight: 500; padding-left: 12px; padding-right: 12px; }
+.hours tr.closed td:last-child { color: var(--biscuit-deep); }
+
+.map-frame { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+.map-frame iframe { width: 100%; height: 100%; min-height: 400px; border: 0; display: block; }
+
+.social { display: flex; gap: 12px; }
+.social a {
+  width: 44px; height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--forest);
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.social a:hover { background: var(--forest); border-color: var(--forest); color: var(--cream); }
+.social svg { width: 19px; height: 19px; }
+.band-forest .social a { border-color: rgba(246,243,236,0.35); color: var(--cream); }
+.band-forest .social a:hover { background: var(--cream); color: var(--forest); }
+
+/* ---------------- Formulaire ---------------- */
+
+.form-field { margin-bottom: 22px; }
+.form-field label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 9px;
+}
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: border-color 0.18s ease;
+}
+.form-field input:focus,
+.form-field textarea:focus { outline: none; border-color: var(--forest); }
+.form-field textarea { min-height: 150px; resize: vertical; }
+.form-note { font-size: 0.86rem; color: var(--text-soft); margin-top: 14px; }
+
+/* ---------------- Bandeau de sous-page ---------------- */
+
+.page-head { background: var(--sage-dark); color: var(--white); padding: 74px 0 78px; }
+.page-head .eyebrow { color: rgba(255,255,255,0.95); }
+.page-head h1 { color: var(--white); margin-bottom: 0.25em; }
+.page-head p { color: rgba(255,255,255,0.96); max-width: 56ch; font-size: 1.1rem; }
+
+/* ---------------- Citation ---------------- */
+
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  line-height: 1.45;
+  color: var(--forest);
+  margin: 0;
+}
+.band-forest .pull-quote { color: var(--white); }
+.attrib {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-top: 22px;
+}
+.band-forest .attrib { color: var(--sage-light); }
+
+/* ---------------- Pied de page ---------------- */
+
+.site-footer {
+  background: var(--forest-dark);
+  color: rgba(246,243,236,0.78);
+  padding: 72px 0 30px;
+  font-size: 0.94rem;
+}
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 52px; }
+.footer-logo img { width: 190px; margin-bottom: 20px; }
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--sage-light);
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+.footer-col li { margin-bottom: 9px; }
+.footer-col a { color: rgba(246,243,236,0.78); text-decoration: none; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(246,243,236,0.15);
+  padding-top: 26px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.76rem;
+  color: rgba(246,243,236,0.5);
+}
+.footer-bottom a { color: inherit; text-decoration: none; }
+.footer-bottom a:hover { color: var(--white); }
+
+/* ---------------- Apparition au défilement ---------------- */
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ---------------- Accessibilité ---------------- */
+
+:focus-visible { outline: 2px solid var(--biscuit-deep); outline-offset: 3px; }
+
+.skip-link { position: absolute; left: -9999px; top: 0; background: var(--forest); color: var(--cream); padding: 12px 20px; z-index: 999; }
+.skip-link:focus { left: 12px; top: 12px; }
+
+/* ---------------- Responsive ---------------- */
+
+@media (max-width: 1180px) {
+  .nav-links { gap: 20px; }
+  .nav-links a { font-size: 0.7rem; letter-spacing: 0.12em; }
+  .nav-right { gap: 16px; }
+  .nav-cta { font-size: 0.68rem; padding: 0.8em 1.1em; letter-spacing: 0.1em; }
+}
+
+@media (max-width: 980px) {
+  .split { grid-template-columns: 1fr; gap: 40px; }
+  .split.media-left .split-text,
+  .split.media-right .split-text { order: 2; }
+  .split.media-left .split-media,
+  .split.media-right .split-media { order: 1; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 34px; }
+  .cols-2 { columns: 1; }
+}
+
+@media (max-width: 820px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--sage);
+    padding: 6px 28px 24px;
+    border-top: 1px solid rgba(56,69,47,0.2);
+    display: none;
+    box-shadow: var(--shadow);
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; width: 100%; padding: 14px 0; border-bottom: 1px solid rgba(56,69,47,0.22); }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-links a[aria-current="page"]::after { display: none; }
+
+  section { padding: 62px 0; }
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+  .hero { min-height: 62vh; }
+  .hero-inner { padding-bottom: 52px; }
+  .brand img { height: 46px; }
+  .vitrine { padding: 58px 0; }
+  .page-head { padding: 54px 0 58px; }
+}
+
+@media (max-width: 520px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .btn { width: 100%; justify-content: center; }
+  .btn-row { flex-direction: column; }
+  .soon { padding: 34px 22px; }
+}
+
+@media print {
+  .site-header, .announce, .nav-toggle, .site-footer, .map-frame { display: none; }
+  body { background: #fff; }
+}
+
+/* Masqué visuellement, lisible par les lecteurs d'écran */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================
+   BLOC COMMERCIAL — bouton d'action permanent, tuiles,
+   avis clients, mosaïque et bandeaux d'appel à l'action
+   ========================================================= */
+
+/* ---- Bouton d'action doré, le plus visible du site ---- */
+.btn-cta {
+  background: var(--biscuit);
+  color: #3A2A12;
+  border-color: var(--biscuit);
+  font-weight: 500;
+}
+.btn-cta:hover { background: var(--biscuit-deep); border-color: var(--biscuit-deep); color: var(--white); }
+
+/* Version compacte dans la barre de navigation */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: var(--biscuit);
+  color: #3A2A12;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.85em 1.4em;
+  border-radius: var(--radius);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-cta:hover { background: var(--biscuit-deep); color: var(--white); }
+.nav-cta svg { width: 14px; height: 14px; }
+.nav-right { display: flex; align-items: center; gap: 22px; }
+
+/* ---- Tuiles de catégories cliquables ---- */
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  text-decoration: none;
+  aspect-ratio: 3 / 4;
+  background: var(--forest);
+}
+.tile img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.tile:hover img { transform: scale(1.06); }
+.tile::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(26,33,21,0.88) 0%, rgba(26,33,21,0.35) 45%, rgba(26,33,21,0.05) 100%);
+}
+.tile-label {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  padding: 30px 28px;
+  color: var(--white);
+}
+.tile-label .t-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.tile-label .t-sub {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.86);
+  margin-bottom: 14px;
+}
+.tile-label .t-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--biscuit);
+}
+.tile-label .t-link svg { width: 14px; height: 14px; transition: transform 0.25s ease; }
+.tile:hover .t-link svg { transform: translateX(4px); }
+
+/* ---- Avis clients ---- */
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.review {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px 30px;
+  display: flex;
+  flex-direction: column;
+}
+.band-forest .review { background: rgba(255,255,255,0.06); border-color: rgba(246,243,236,0.2); }
+.stars { display: flex; gap: 3px; margin-bottom: 18px; color: var(--biscuit); }
+.stars svg { width: 16px; height: 16px; }
+.review blockquote {
+  margin: 0 0 22px;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--text);
+  flex: 1;
+}
+.band-forest .review blockquote { color: rgba(246,243,236,0.92); }
+.review .who {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+}
+.band-forest .review .who { color: var(--sage-light); }
+.review .source { display: block; font-size: 0.78rem; color: var(--text-soft); margin-top: 5px; letter-spacing: 0; text-transform: none; font-weight: 300; }
+.band-forest .review .source { color: rgba(246,243,236,0.6); }
+
+/* ---- Mosaïque de photos ---- */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 12px;
+}
+.mosaic img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+.mosaic .wide { grid-column: span 2; }
+.mosaic .tall { grid-row: span 2; }
+
+/* ---- Bandeau d'appel à l'action pleine largeur ---- */
+.cta-band {
+  position: relative;
+  overflow: hidden;
+  background: var(--forest);
+  color: var(--cream);
+  text-align: center;
+  padding: 96px 0;
+}
+.cta-band .cta-bg { position: absolute; inset: 0; }
+.cta-band .cta-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.28; }
+.cta-band .cta-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(42,52,35,0.9), rgba(42,52,35,0.72));
+}
+.cta-band .container { position: relative; }
+.cta-band h2 { color: var(--white); max-width: 20ch; margin-left: auto; margin-right: auto; }
+.cta-band p { color: rgba(246,243,236,0.86); max-width: 54ch; margin: 0 auto; font-size: 1.08rem; }
+.cta-band .eyebrow { color: var(--sage-light); }
+.cta-band .btn-row { justify-content: center; }
+
+/* ---- Bandeau de réassurance : 4 engagements ---- */
+.promise { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
+.promise-item { text-align: left; }
+.promise-item .p-icon {
+  width: 46px; height: 46px;
+  color: var(--biscuit);
+  margin-bottom: 18px;
+}
+.promise-item .p-icon svg { width: 100%; height: 100%; }
+.promise-item h3 { font-size: 1.08rem; margin-bottom: 0.4em; }
+.promise-item p { font-size: 0.92rem; color: var(--text-soft); }
+.band-forest .promise-item p { color: rgba(246,243,236,0.78); }
+
+/* ---- Responsive du bloc commercial ---- */
+@media (max-width: 980px) {
+  .tiles { grid-template-columns: 1fr; }
+  .reviews { grid-template-columns: 1fr; }
+  .promise { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
+}
+
+@media (max-width: 820px) {
+  .nav-right { gap: 12px; }
+  .nav-cta { font-size: 0.66rem; padding: 0.75em 1em; letter-spacing: 0.1em; }
+  .nav-cta .cta-long { display: none; }
+  .promise { grid-template-columns: 1fr; }
+  .cta-band { padding: 66px 0; }
+  .mosaic { grid-auto-rows: 140px; }
+}
+
+@media (max-width: 520px) {
+  .nav-cta { display: none; }
+  .nav-links .mobile-cta { display: block; }
+}
+.nav-links .mobile-cta { display: none; }
+@media (max-width: 520px) {
+  .nav-links .mobile-cta a {
+    background: var(--biscuit);
+    color: #3A2A12;
+    text-align: center;
+    border-radius: var(--radius);
+    margin-top: 14px;
+    border-bottom: none;
+    font-weight: 500;
+  }
+}
+
+/* =========================================================
+   COUCHE « MODERNE »
+   Minimalisme éditorial : images pleine largeur, carrousel,
+   en-tête transparent, typographie fine en capitales.
+   ========================================================= */
+
+/* ---- En-tête transparent au-dessus du hero, opaque au défilement ----
+   Le bandeau d'annonce et la navigation sont placés par-dessus le carrousel.
+   Au défilement, l'annonce disparaît et la navigation se fixe en haut. */
+.topbar.is-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+}
+.topbar.is-overlay .announce {
+  background: rgba(24,30,19,0.55);
+  color: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
+}
+.topbar.is-overlay .announce a { color: var(--white); }
+
+.topbar.is-overlay.is-stuck { position: fixed; }
+.topbar.is-overlay.is-stuck .announce { display: none; }
+
+.site-header.is-overlay {
+  position: static;
+  background: transparent;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+.site-header.is-overlay .nav-links a,
+.site-header.is-overlay .nav-toggle { color: var(--white); }
+.site-header.is-overlay .nav-toggle { border-color: rgba(255,255,255,0.6); }
+.site-header.is-overlay .nav-links a[aria-current="page"]::after { background: var(--white); }
+.site-header.is-overlay .nav-cta {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.7);
+}
+.site-header.is-overlay .nav-cta:hover { background: var(--white); color: var(--forest); }
+
+.topbar.is-overlay.is-stuck .site-header {
+  background: var(--sage);
+  box-shadow: 0 1px 0 rgba(56,69,47,0.12);
+}
+.topbar.is-overlay.is-stuck .nav-links a,
+.topbar.is-overlay.is-stuck .nav-toggle { color: var(--forest); }
+.topbar.is-overlay.is-stuck .nav-toggle { border-color: var(--forest); }
+.topbar.is-overlay.is-stuck .nav-links a[aria-current="page"]::after { background: var(--forest); }
+.topbar.is-overlay.is-stuck .nav-cta {
+  background: var(--biscuit);
+  color: #3A2A12;
+  border-color: var(--biscuit);
+}
+.topbar.is-overlay.is-stuck .nav-cta:hover { background: var(--biscuit-deep); color: var(--white); }
+
+/* Sur mobile, le menu déroulant se replie sous la navigation fixée */
+.topbar.is-overlay .nav-links { background: var(--sage); }
+
+/* ---- Carrousel plein écran ---- */
+.slider {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  max-height: 900px;
+  overflow: hidden;
+  background: var(--forest);
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.1s ease;
+  pointer-events: none;
+}
+.slide.is-active { opacity: 1; pointer-events: auto; }
+.slide-media { position: absolute; inset: 0; }
+.slide-media img { width: 100%; height: 100%; object-fit: cover; }
+.slide-media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(24,30,19,0.86) 0%, rgba(24,30,19,0.34) 52%, rgba(24,30,19,0.42) 100%);
+}
+.slide-content {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 0 0 132px;
+  color: var(--white);
+}
+.slide-kicker {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.86);
+  margin-bottom: 22px;
+}
+.slide-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6.4vw, 5.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin: 0 0 30px;
+  max-width: 16ch;
+}
+.slide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.55);
+  transition: border-color 0.25s ease, gap 0.25s ease;
+}
+.slide-link:hover { border-color: var(--white); gap: 1.1em; }
+.slide-link svg { width: 15px; height: 15px; }
+
+.slider-nav {
+  position: absolute;
+  left: 0; right: 0; bottom: 52px;
+  z-index: 5;
+}
+.slider-nav .container { display: flex; align-items: center; gap: 26px; }
+.slider-count {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.6);
+}
+.slider-count .cur { color: var(--white); }
+.slider-count .bar { width: 54px; height: 1px; background: rgba(255,255,255,0.35); position: relative; }
+.slider-count .bar span {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--white);
+  transition: width 0.5s ease;
+}
+.slider-btns { display: flex; gap: 10px; margin-left: auto; }
+.slider-btn {
+  width: 46px; height: 46px;
+  border: 1px solid rgba(255,255,255,0.5);
+  background: transparent;
+  color: var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.slider-btn:hover { background: var(--white); color: var(--forest); border-color: var(--white); }
+.slider-btn svg { width: 17px; height: 17px; }
+
+/* ---- Déclaration de marque ---- */
+.statement { padding: 128px 0; text-align: center; }
+.statement .s-kicker {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 26px;
+}
+.statement .s-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--forest);
+  margin: 0 auto;
+  max-width: 18ch;
+}
+.statement .s-text {
+  max-width: 56ch;
+  margin: 34px auto 0;
+  color: var(--text-soft);
+  font-size: 1.06rem;
+}
+
+/* ---- Tuiles de collection, pleine largeur, sans gouttière ---- */
+.collections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.collection {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--forest);
+}
+.collection img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.1s cubic-bezier(0.16, 0.8, 0.3, 1);
+}
+.collection:hover img { transform: scale(1.05); }
+.collection::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(24,30,19,0.88) 0%, rgba(24,30,19,0.42) 38%, rgba(24,30,19,0.06) 72%);
+  transition: background 0.4s ease;
+}
+.collection:hover::after { background: linear-gradient(to top, rgba(24,30,19,0.92) 0%, rgba(24,30,19,0.5) 45%, rgba(24,30,19,0.16) 78%); }
+.collection-label {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  padding: 44px 38px;
+  color: var(--white);
+  text-align: center;
+}
+.collection-label .c-name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.9rem;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.collection-label .c-more {
+  display: inline-block;
+  font-size: 0.66rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.45);
+}
+
+/* ---- Grille produits façon boutique ---- */
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 46px;
+}
+.section-head h2 { margin-bottom: 0; }
+.section-head .see-all {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--forest);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--forest);
+  white-space: nowrap;
+}
+.section-head .see-all:hover { color: var(--biscuit-deep); border-color: var(--biscuit-deep); }
+
+.shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px 26px; }
+.shop-item { display: block; text-decoration: none; }
+.shop-item .thumb {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream-warm);
+  aspect-ratio: 1;
+  margin-bottom: 20px;
+}
+.shop-item .thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.16, 0.8, 0.3, 1);
+}
+.shop-item:hover .thumb img { transform: scale(1.05); }
+.shop-item .s-name {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 5px;
+}
+.shop-item .s-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.84rem;
+  color: var(--text-soft);
+}
+.shop-item .s-price { color: var(--forest); font-variant-numeric: tabular-nums; }
+.shop-item .s-price.todo { color: var(--biscuit-deep); font-style: italic; }
+
+/* ---- Bande image pleine largeur ---- */
+.fullbleed {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--forest);
+}
+.fullbleed-media { position: absolute; inset: 0; }
+.fullbleed-media img { width: 100%; height: 100%; object-fit: cover; }
+.fullbleed-media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(24,30,19,0.82) 0%, rgba(24,30,19,0.45) 60%, rgba(24,30,19,0.25) 100%);
+}
+.fullbleed .container { position: relative; }
+.fullbleed-text { max-width: 42ch; color: var(--white); }
+.fullbleed-text .eyebrow { color: rgba(255,255,255,0.8); }
+.fullbleed-text h2 { color: var(--white); font-weight: 400; }
+.fullbleed-text p { color: rgba(255,255,255,0.85); font-size: 1.06rem; }
+
+/* ---- Bandeau de réassurance rotatif ---- */
+.reassure {
+  background: var(--forest);
+  color: var(--cream);
+  padding: 30px 0;
+  overflow: hidden;
+}
+.reassure-track { position: relative; height: 26px; }
+.reassure-item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  text-align: center;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(246,243,236,0.9);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reassure-item.is-active { opacity: 1; transform: none; }
+.reassure-item strong { color: var(--white); font-weight: 500; }
+.reassure-dots { display: flex; justify-content: center; gap: 7px; margin-top: 20px; }
+.reassure-dots button {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(246,243,236,0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease;
+}
+.reassure-dots button.is-active { background: var(--cream); }
+
+/* ---- Ajustements des composants existants pour le style moderne ---- */
+.vitrine { padding: 110px 0; }
+.reviews { gap: 0; }
+.review {
+  border: none;
+  border-right: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  padding: 8px 34px;
+}
+.review:last-child { border-right: none; }
+.review blockquote { font-size: 1.04rem; }
+
+/* ---- Responsive de la couche moderne ---- */
+@media (max-width: 980px) {
+  .collections { grid-template-columns: 1fr; }
+  .collection { aspect-ratio: 16 / 11; }
+  .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 30px 20px; }
+  .statement { padding: 84px 0; }
+  .fullbleed { min-height: 480px; }
+  .review { border-right: none; border-bottom: 1px solid var(--line); padding: 30px 0; }
+  .review:last-child { border-bottom: none; }
+}
+
+@media (max-width: 820px) {
+  .slider { height: 88vh; min-height: 500px; }
+  .slide-content { padding-bottom: 148px; }
+  .slider-nav { bottom: 40px; }
+  .slider-btn { width: 40px; height: 40px; }
+  .vitrine { padding: 70px 0; }
+  .section-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+
+@media (max-width: 520px) {
+  .shop-grid { grid-template-columns: 1fr 1fr; gap: 24px 14px; }
+  .collection-label { padding: 30px 22px; }
+  .collection-label .c-name { font-size: 1.5rem; }
+}
+
+/* =========================================================
+   EN-TÊTE À MENU LATÉRAL
+   Barre verte transparente, révélée au survol ; bouton
+   à trois traits à gauche, logo centré, action à droite.
+   ========================================================= */
+
+/* ---- Disposition en trois colonnes ---- */
+.nav-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 34px;
+}
+.nav-lead { justify-self: start; }
+.nav-wrap .brand { justify-self: center; }
+.nav-right { justify-self: end; gap: 0; }
+
+/* ---- Bouton à trois traits, toujours visible ---- */
+.nav-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  cursor: pointer;
+  color: var(--forest);
+}
+.burger { display: block; width: 26px; height: 14px; position: relative; }
+.burger span {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.32s cubic-bezier(0.6, 0, 0.2, 1), opacity 0.2s ease, width 0.32s ease;
+}
+.burger span:nth-child(1) { top: 0; }
+.burger span:nth-child(2) { top: 6px; width: 72%; }
+.burger span:nth-child(3) { top: 12px; }
+.nav-toggle:hover .burger span:nth-child(2) { width: 100%; }
+
+.nav-toggle[aria-expanded="true"] .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .burger span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.nav-toggle .toggle-word {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* ---- Panneau de navigation déroulant ---- */
+.nav-panel {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: var(--sage);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-panel.is-open { max-height: 640px; }
+
+.nav-links {
+  display: block;
+  position: static;
+  list-style: none;
+  margin: 0;
+  padding: 34px 34px 40px;
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.nav-links li { border-bottom: 1px solid rgba(56,69,47,0.16); }
+.nav-links li:last-child { border-bottom: none; }
+.nav-links a {
+  display: block;
+  width: 100%;
+  padding: 17px 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--forest);
+  opacity: 1;
+  white-space: normal;
+  transition: transform 0.3s cubic-bezier(0.3, 0.8, 0.3, 1), color 0.2s ease;
+}
+.nav-links a:hover { transform: translateX(12px); color: var(--forest-dark); }
+.nav-links a[aria-current="page"]::after { display: none; }
+.nav-links a[aria-current="page"]::before {
+  content: "—";
+  display: inline-block;
+  margin-right: 0.5em;
+  color: var(--biscuit-deep);
+}
+.nav-links .mobile-cta { display: none; }
+
+/* ---- Barre verte transparente, révélée au survol ---- */
+.topbar.is-overlay .site-header { position: relative; background: transparent; }
+.topbar.is-overlay .site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--sage);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.topbar.is-overlay .site-header > * { position: relative; z-index: 1; }
+.topbar.is-overlay:hover .site-header::before,
+.topbar.is-overlay:focus-within .site-header::before,
+.topbar.is-overlay.is-open .site-header::before,
+.topbar.is-overlay.is-stuck .site-header::before { opacity: 1; }
+
+.site-header { position: relative; }
+
+/* Contenu clair tant que la barre est transparente */
+.topbar.is-overlay .nav-toggle,
+.topbar.is-overlay .nav-cta { color: var(--white); }
+.topbar.is-overlay .nav-cta { border-color: rgba(255,255,255,0.7); background: transparent; }
+
+/* Contenu foncé dès que le vert apparaît */
+.topbar.is-overlay:hover .nav-toggle,
+.topbar.is-overlay:focus-within .nav-toggle,
+.topbar.is-overlay.is-open .nav-toggle,
+.topbar.is-overlay.is-stuck .nav-toggle { color: var(--forest); }
+
+.topbar.is-overlay:hover .nav-cta,
+.topbar.is-overlay:focus-within .nav-cta,
+.topbar.is-overlay.is-open .nav-cta,
+.topbar.is-overlay.is-stuck .nav-cta {
+  background: var(--biscuit);
+  color: #3A2A12;
+  border-color: var(--biscuit);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 820px) {
+  .nav-wrap { padding: 12px 20px; }
+  .nav-toggle .toggle-word { display: none; }
+  .nav-links { padding: 24px 20px 30px; }
+  .nav-links .mobile-cta { display: block; }
+  .nav-links .mobile-cta a { background: transparent; color: var(--forest); text-align: left; margin-top: 0; font-weight: 400; }
+  .nav-cta { display: none; }
+  .nav-panel.is-open { max-height: 720px; }
+}
+
+@media (max-width: 520px) {
+  .brand img { height: 40px; }
+  .nav-links a { font-size: 1.25rem; padding: 14px 0; }
+}
+
+/* Les libellés du panneau restent lisibles même en mode superposé */
+.topbar .nav-panel .nav-links a { color: var(--forest); }
+.topbar .nav-panel .nav-links a:hover { color: var(--forest-dark); }
+.topbar.is-overlay .nav-panel { background: var(--sage); }
+
+/* =========================================================
+   BARRE FINE + TIROIR LATÉRAL
+   Barre resserrée, logo agrandi, bouton menu collé à gauche,
+   action collée à droite. Menu en tiroir depuis la gauche.
+   ========================================================= */
+
+/* ---- Barre resserrée, sur toute la largeur de l'écran ---- */
+.nav-wrap {
+  max-width: none;
+  width: 100%;
+  padding: 9px 30px;
+  gap: 16px;
+}
+.brand img { height: 84px; }
+
+/* Au défilement, la barre se comprime encore */
+.topbar.is-stuck .nav-wrap { padding: 5px 30px; }
+.topbar.is-stuck .brand img { height: 58px; }
+.brand img,
+.nav-wrap { transition: height 0.3s ease, padding 0.3s ease; }
+
+/* ---- Bouton menu collé à gauche ---- */
+.nav-toggle { padding: 8px 2px; gap: 14px; }
+.burger { width: 30px; height: 15px; }
+.burger span:nth-child(2) { top: 6.5px; }
+.burger span:nth-child(3) { top: 13px; }
+.nav-toggle[aria-expanded="true"] .burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ---- Action collée à droite, en lien fin plutôt qu'en bouton ---- */
+.nav-cta {
+  background: transparent;
+  border: none;
+  padding: 8px 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: var(--forest);
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+}
+.nav-cta:hover { background: transparent; color: var(--biscuit-deep); }
+.topbar.is-overlay .nav-cta { background: transparent; border: none; border-bottom: 1px solid currentColor; color: var(--white); }
+.topbar.is-overlay:hover .nav-cta,
+.topbar.is-overlay:focus-within .nav-cta,
+.topbar.is-overlay.is-open .nav-cta,
+.topbar.is-overlay.is-stuck .nav-cta {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  color: var(--forest);
+}
+.topbar.is-overlay:hover .nav-cta:hover,
+.topbar.is-overlay.is-stuck .nav-cta:hover { color: var(--biscuit-deep); }
+
+/* ---- Voile derrière le tiroir ---- */
+.drawer-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(24,30,19,0.42);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.drawer-veil.is-open { opacity: 1; }
+
+/* ---- Tiroir ---- */
+.drawer {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 310;
+  width: min(430px, 88vw);
+  background: var(--cream);
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.5, 0, 0.15, 1);
+  overflow-y: auto;
+  visibility: hidden;
+}
+.drawer.is-open { transform: none; visibility: visible; }
+
+.drawer-inner {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 40px 34px;
+}
+
+.drawer-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  background: none;
+  border: none;
+  padding: 6px 0;
+  margin-bottom: 46px;
+  cursor: pointer;
+  color: var(--forest);
+  align-self: flex-start;
+}
+.drawer-close .x { position: relative; display: block; width: 17px; height: 17px; }
+.drawer-close .x span {
+  position: absolute;
+  top: 8px; left: 0;
+  width: 100%; height: 1.5px;
+  background: currentColor;
+}
+.drawer-close .x span:first-child { transform: rotate(45deg); }
+.drawer-close .x span:last-child { transform: rotate(-45deg); }
+.drawer-close .word {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.drawer-close:hover { color: var(--biscuit-deep); }
+
+/* Rubriques principales */
+.drawer-main ul { list-style: none; margin: 0; padding: 0; }
+.drawer-main li { margin-bottom: 6px; }
+.drawer-main a {
+  display: block;
+  padding: 9px 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--forest);
+  text-decoration: none;
+  transition: transform 0.35s cubic-bezier(0.3, 0.8, 0.3, 1), color 0.2s ease;
+}
+.drawer-main a:hover { transform: translateX(10px); color: var(--biscuit-deep); }
+.drawer-main a[aria-current="page"] { color: var(--biscuit-deep); }
+
+/* Liens secondaires */
+.drawer-second {
+  margin-top: auto;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+.drawer-second ul { list-style: none; margin: 0 0 22px; padding: 0; }
+.drawer-second li { margin-bottom: 3px; }
+.drawer-second a {
+  display: inline-block;
+  padding: 6px 0;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.drawer-second a:hover { color: var(--forest); }
+.drawer-second a[aria-current="page"] { color: var(--forest); }
+
+.drawer-social { display: flex; gap: 24px; }
+.drawer-social a {
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+}
+.drawer-social a:hover { color: var(--forest); border-bottom-color: var(--forest); }
+
+body.drawer-open { overflow: hidden; }
+
+/* ---- Bandeaux de sous-page allégés ---- */
+.page-head {
+  background: var(--cream);
+  color: var(--forest);
+  padding: 104px 0 46px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head .eyebrow { color: var(--sage-deep); margin-bottom: 1.1em; }
+.page-head h1 {
+  color: var(--forest);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 5.2vw, 4rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.28em;
+}
+.page-head p { color: var(--text-soft); font-size: 1.04rem; font-weight: 300; }
+
+/* Titres plus fins sur l'ensemble du site, pour l'effet épuré */
+h1, h2 { font-weight: 400; }
+.statement .s-title, .slide-title { font-weight: 300; }
+.category-head { border-bottom-width: 1px; border-bottom-color: var(--line); }
+.category-head h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 400; }
+
+/* ---- Responsive ---- */
+@media (max-width: 820px) {
+  .nav-wrap { padding: 8px 18px; }
+  .topbar.is-stuck .nav-wrap { padding: 5px 18px; }
+  .brand img { height: 58px; }
+  .topbar.is-stuck .brand img { height: 46px; }
+  .nav-toggle .toggle-word { display: none; }
+  .nav-cta { display: none; }
+  .drawer-inner { padding: 22px 26px 28px; }
+  .drawer-close { margin-bottom: 32px; }
+  .page-head { padding: 74px 0 34px; }
+}
+
+/* =========================================================
+   VIDÉO EN ARRIÈRE-PLAN
+   Une seule vidéo, fixée derrière tout le site. Les sections
+   opaques la masquent ; certaines la laissent transparaître,
+   comme une fenêtre ouverte sur l'atelier.
+   ========================================================= */
+
+html { background: var(--forest-dark); }
+body { background: transparent; }
+
+.site-video {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  background: var(--forest-dark);
+}
+.site-video video,
+.site-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.site-veil {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: rgba(20, 26, 16, 0.62);
+  pointer-events: none;
+}
+/* Le poster remplace la vidéo quand elle ne peut pas être lue */
+.site-video .poster { position: absolute; inset: 0; }
+.site-video.has-video .poster { display: none; }
+
+/* Par défaut les sections restent opaques : la vidéo ne se voit
+   que là où on l'autorise explicitement. */
+section { background: var(--cream); }
+
+/* ---- Sections qui laissent voir la vidéo ---- */
+.on-video { background: transparent; color: var(--white); }
+.on-video h1, .on-video h2, .on-video h3, .on-video .s-title { color: var(--white); }
+.on-video p, .on-video .s-text, .on-video .lede { color: rgba(246, 243, 236, 0.88); }
+.on-video .eyebrow, .on-video .s-kicker { color: var(--sage-light); }
+
+/* Déclaration de marque : fenêtre sur l'atelier */
+.statement.on-video { padding: 148px 0; }
+
+/* Bandeau de sous-page posé sur la vidéo */
+.page-head.on-video {
+  background: transparent;
+  border-bottom: 1px solid rgba(246, 243, 236, 0.22);
+  padding: 128px 0 62px;
+}
+.page-head.on-video h1 { color: var(--white); }
+.page-head.on-video p { color: rgba(246, 243, 236, 0.9); }
+.page-head.on-video .eyebrow { color: var(--sage-light); }
+
+/* Bandes teintées : la vidéo transparaît légèrement */
+.vitrine { background: rgba(86, 98, 79, 0.86); }
+.reassure { background: rgba(42, 52, 35, 0.9); }
+.band-forest { background: rgba(48, 60, 40, 0.94); }
+
+/* ---- Fondu entre les sections opaques et la vidéo ---- */
+.fade-into-video {
+  height: 120px;
+  background: linear-gradient(to bottom, var(--cream), rgba(246, 243, 236, 0));
+}
+.fade-from-video {
+  height: 120px;
+  background: linear-gradient(to top, var(--cream), rgba(246, 243, 236, 0));
+}
+
+/* ---- Économie de ressources ---- */
+@media (max-width: 820px) {
+  /* La vidéo fixée est coûteuse sur mobile : on garde l'image seule */
+  .site-video video { display: none; }
+  .site-video .poster { display: block !important; }
+  .statement.on-video { padding: 92px 0; }
+  .page-head.on-video { padding: 96px 0 46px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-video video { display: none; }
+  .site-video .poster { display: block !important; }
+}
+
+/* Mention discrète à droite des titres de section */
+.section-head .note {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  white-space: nowrap;
+}
+
+/* Planche de six produits : trois colonnes */
+.shop-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 980px) { .shop-grid.cols-3 { grid-template-columns: repeat(2, 1fr); } }
+
+/* Voile un peu plus dense : la vidéo d'atelier est très claire */
+.site-veil { background: rgba(20, 26, 16, 0.68); }
+
+/* =========================================================
+   ACCUEIL RÉORGANISÉ + CONFORT DE NAVIGATION
+   La vidéo ouvre la page, le carrousel vient ensuite.
+   ========================================================= */
+
+/* ---- Première zone : la vidéo, plein écran ---- */
+.hero-video {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 0 120px;
+}
+.hero-video .s-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 6vw, 4.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin: 0 auto;
+  max-width: 18ch;
+}
+.hero-video .s-kicker {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--sage-light);
+  margin-bottom: 28px;
+}
+.hero-video .s-text {
+  max-width: 52ch;
+  margin: 32px auto 0;
+  color: rgba(246, 243, 236, 0.9);
+  font-size: 1.06rem;
+}
+.hero-actions { justify-content: center; }
+
+/* Invitation à faire défiler */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 42px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+}
+.scroll-cue .cue-word {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.scroll-cue .cue-line {
+  display: block;
+  width: 1px;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-cue .cue-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -54px;
+  width: 1px;
+  height: 54px;
+  background: var(--white);
+  animation: cue 2.4s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+@keyframes cue {
+  0%   { transform: translateY(0); }
+  70%  { transform: translateY(108px); }
+  100% { transform: translateY(108px); }
+}
+.scroll-cue:hover { color: var(--white); }
+
+/* ---- Le carrousel n'occupe plus tout l'écran ---- */
+.slider.is-second {
+  width: 100%;
+  height: clamp(460px, 70vh, 700px);
+  min-height: 0;
+  max-height: none;
+}
+.slider.is-second .slide-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  line-height: 1.08;
+  color: var(--white);
+  margin: 0 0 26px;
+  max-width: 16ch;
+}
+.slider.is-second .slide-content { padding-bottom: 118px; }
+
+/* Points de navigation du carrousel */
+.slider-dots { display: flex; gap: 10px; margin-left: 30px; }
+.slider-dots button {
+  width: 8px; height: 8px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.slider-dots button:hover { background: rgba(255, 255, 255, 0.5); }
+.slider-dots button[aria-selected="true"] { background: var(--white); transform: scale(1.25); }
+
+/* ---- Bouton de retour en haut ---- */
+.to-top {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  z-index: 150;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--forest);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background 0.2s ease, color 0.2s ease;
+  box-shadow: var(--shadow);
+}
+.to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+.to-top svg { width: 18px; height: 18px; }
+
+/* ---- Confort de lecture ---- */
+/* Le contenu visé par une ancre ne se cache pas sous la barre fixe */
+[id] { scroll-margin-top: 120px; }
+
+/* Zones cliquables suffisantes au doigt */
+@media (pointer: coarse) {
+  .nav-toggle, .slider-btn, .to-top, .drawer-close { min-height: 44px; min-width: 44px; }
+  .slider-dots button { width: 12px; height: 12px; }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 820px) {
+  .hero-video { min-height: 92svh; padding: 120px 0 110px; }
+  .hero-video .s-text { font-size: 1rem; }
+  .slider.is-second { height: clamp(440px, 66svh, 560px); }
+  .slider.is-second .slide-content { padding-bottom: 132px; }
+  .slider-dots { margin-left: 18px; }
+  .scroll-cue { bottom: 26px; }
+  .scroll-cue .cue-line { height: 38px; }
+  @keyframes cue {
+    0% { transform: translateY(0); }
+    70%, 100% { transform: translateY(76px); }
+  }
+  .to-top { right: 16px; bottom: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue .cue-line::after { animation: none; top: 0; }
+}
+
+/* =========================================================
+   LISIBILITÉ DES LISTES SUR FOND SOMBRE
+   La liste tarifaire garde par défaut un texte vert profond,
+   illisible sur les bandes vert foncé. On l'éclaircit.
+   ========================================================= */
+
+.band-forest .price-list li,
+.cta-band .price-list li { border-bottom-color: rgba(246, 243, 236, 0.22); }
+
+.band-forest .price-list .item-name,
+.cta-band .price-list .item-name { color: var(--white); }
+
+.band-forest .price-list .item-sub,
+.cta-band .price-list .item-sub { color: rgba(246, 243, 236, 0.75); }
+
+.band-forest .price-list .item-price,
+.cta-band .price-list .item-price { color: rgba(246, 243, 236, 0.85); }
+
+.band-forest .price-list .item-price.todo,
+.cta-band .price-list .item-price.todo { color: var(--biscuit); }
+
+.band-forest .price-list .dots,
+.cta-band .price-list .dots { border-bottom-color: rgba(246, 243, 236, 0.3); }
+
+/* Même correction pour les tableaux d'horaires et les mentions annexes */
+.band-forest .hours tr { border-bottom-color: rgba(246, 243, 236, 0.22); }
+.band-forest .hours td:first-child { color: var(--white); }
+.band-forest .hours td:last-child { color: rgba(246, 243, 236, 0.8); }
+.band-forest .hours tr.closed td:last-child { color: var(--biscuit); }
+.band-forest .hours tr.is-today { background: rgba(246, 243, 236, 0.1); }
+.band-forest .form-note,
+.band-forest .price-note { color: rgba(246, 243, 236, 0.72); }
+.band-forest .badge { background: rgba(246, 243, 236, 0.16); color: var(--white); }
+
+/* Petites mentions et chiffres décoratifs : teintes assombries pour
+   rester lisibles sur les fonds clairs (crème et sauge pâle). */
+.eyebrow,
+.info-block h4,
+.section-head .note,
+.category-head .note,
+.form-field label,
+.review .who,
+.attrib { color: #5E6B58; }
+
+.value .num { color: #8A6630; }
+
+/* Sur les fonds sombres, ces mêmes éléments restent clairs */
+.band-forest .eyebrow,
+.band-forest .info-block h4,
+.band-forest .review .who,
+.band-forest .attrib,
+.on-video .eyebrow,
+.cta-band .eyebrow,
+.vitrine .eyebrow,
+.page-head.on-video .eyebrow { color: var(--sage-light); }
+
+.band-forest .value .num,
+.cta-band .value .num { color: var(--biscuit); }
+
+/* Listes de produits sans tarif : la ligne se réduit au nom et à la précision */
+.price-list.plain li { display: block; }
+.price-list.plain .item-name { display: block; font-size: 1.02rem; }
+.price-list.plain .item-sub { margin-top: 4px; }
+
+/* =========================================================
+   CONFORT D'USAGE
+   Indicateur d'ouverture en direct et barre d'action mobile.
+   ========================================================= */
+
+/* ---- Pastille « ouvert / fermé » ---- */
+.open-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 7px 14px 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--forest);
+  margin-bottom: 18px;
+}
+.open-state .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--sage-deep);
+  flex-shrink: 0;
+}
+.open-state.is-open .dot { background: #4E7A3C; box-shadow: 0 0 0 3px rgba(78, 122, 60, 0.18); }
+.open-state.is-closed .dot { background: #A8543A; }
+.open-state .detail { color: var(--text-soft); font-weight: 300; }
+.band-forest .open-state,
+.on-video .open-state {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(246, 243, 236, 0.3);
+  color: var(--white);
+}
+.band-forest .open-state .detail,
+.on-video .open-state .detail { color: rgba(246, 243, 236, 0.78); }
+
+/* ---- Barre d'action fixe, sur mobile uniquement ---- */
+.action-bar { display: none; }
+
+@media (max-width: 820px) {
+  .action-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 160;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--forest);
+    border-top: 1px solid rgba(246, 243, 236, 0.15);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.3, 0.8, 0.3, 1);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .action-bar.is-visible { transform: none; }
+  .action-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    min-height: 56px;
+    text-decoration: none;
+    color: var(--cream);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .action-bar a + a { border-left: 1px solid rgba(246, 243, 236, 0.18); }
+  .action-bar a:active { background: var(--forest-dark); }
+  .action-bar svg { width: 16px; height: 16px; }
+
+  /* Le bouton de retour en haut se décale au-dessus de la barre */
+  .to-top { bottom: 72px; }
+  /* Le pied de page ne doit pas finir sous la barre */
+  .site-footer { padding-bottom: 86px; }
+}
+
+/* Questions fréquentes */
+.faq-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 34px 48px; }
+.faq-item { border-top: 1px solid var(--line); padding-top: 22px; }
+.faq-item h3 { font-size: 1.08rem; margin-bottom: 0.45em; }
+.faq-item p { font-size: 0.95rem; color: var(--text-soft); margin: 0; }
+@media (max-width: 820px) { .faq-list { grid-template-columns: 1fr; gap: 26px; } }
