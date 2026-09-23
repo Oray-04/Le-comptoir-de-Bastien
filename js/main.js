@@ -244,8 +244,6 @@
 
     toTop.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
-      var skip = document.querySelector(".skip-link");
-      if (skip) { skip.focus({ preventScroll: true }); }
     });
   }
 
