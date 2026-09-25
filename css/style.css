@@ -1677,9 +1677,6 @@ section { background: var(--cream); }
 
 /* ---- Économie de ressources ---- */
 @media (max-width: 820px) {
-  /* La vidéo fixée est coûteuse sur mobile : on garde l'image seule */
-  .site-video video { display: none; }
-  .site-video .poster { display: block !important; }
   .statement.on-video { padding: 92px 0; }
   .page-head.on-video { padding: 96px 0 46px; }
 }

@@ -203,10 +203,8 @@
 
   if (bg) {
     var vid = bg.querySelector("video");
-    var small = window.matchMedia("(max-width: 820px)").matches;
-
-    if (!vid || reduced || small) {
-      // Sur mobile et en mouvement réduit, on garde l'image d'attente
+    if (!vid || reduced) {
+      // En mouvement réduit, on garde l'image d'attente
       if (vid) { vid.remove(); }
     } else {
       var play = function () {
@@ -219,10 +217,26 @@
         }
       };
 
-      vid.addEventListener("loadeddata", function () { bg.classList.add("has-video"); });
+      // Attributs posés aussi en JS : certains navigateurs mobiles (iOS)
+      // ne lancent une vidéo automatique que si elle est muette et en ligne
+      vid.muted = true;
+      vid.setAttribute("muted", "");
+      vid.setAttribute("playsinline", "");
+
+      vid.addEventListener("playing", function () { bg.classList.add("has-video"); });
       if (vid.readyState >= 2) { play(); } else { vid.addEventListener("canplay", play, { once: true }); }
       vid.load();
       play();
+
+      // Si la lecture automatique est bloquée (mode économie d'énergie sur
+      // iPhone par exemple), on relance au premier toucher ou défilement
+      var retry = function () {
+        if (vid.paused) { play(); }
+        window.removeEventListener("touchstart", retry);
+        window.removeEventListener("scroll", retry);
+      };
+      window.addEventListener("touchstart", retry, { passive: true });
+      window.addEventListener("scroll", retry, { passive: true });
 
       // Mettre en pause quand l'onglet passe en arrière-plan
       document.addEventListener("visibilitychange", function () {
