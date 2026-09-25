@@ -2198,3 +2198,8 @@ a.choice:hover .c-go svg, a.c-go:hover svg { transform: translateX(4px); }
   .planche .shop-item .s-name { font-size: 1.05rem; transform: none; }
   .planche .shop-item .s-meta { display: none; }
 }
+/* Grille à 4 colonnes (accueil) : nom un peu plus petit */
+.shop-grid.planche:not(.cols-3) .shop-item .s-name { font-size: clamp(1.4rem, 2vw, 1.85rem); }
+@media (hover: none) {
+  .shop-grid.planche:not(.cols-3) .shop-item .s-name { font-size: 1.05rem; }
+}
